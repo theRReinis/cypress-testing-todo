@@ -32,6 +32,7 @@ describe("Filter Todo list app tasks", () => {
   );
 
   beforeEach(() => {
+    // Using localstroage to set up necessary task fields to test filtering
     cy.visit("", {
       onBeforeLoad(win) {
         win.localStorage.setItem("tasks", JSON.stringify(listItems));

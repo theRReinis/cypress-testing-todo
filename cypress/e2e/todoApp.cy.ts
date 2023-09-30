@@ -1,4 +1,20 @@
 describe("Add new tasks into Todo app", () => {
+  it("User see empty task list with available input field", () => {
+    cy.visit("");
+    cy.get("header h1").should("have.text", "todos");
+    cy.get('[data-testid="main-input"]').should(
+      "have.attr",
+      "placeholder",
+      "What needs to be done?"
+    );
+    cy.assertDisplayCountOfTasksLeft("0 items left");
+    cy.get(".container__content").should(
+      "have.css",
+      "background-color",
+      "rgb(234, 231, 230)"
+    );
+  });
+
   it("User can add a task to the list by typing into input field and pressing enter", () => {
     cy.visit("");
     cy.addNewTask("Cook dinner");
