@@ -5,13 +5,13 @@ describe("Add new tasks into Todo app", () => {
     cy.get('[data-testid="main-input"]').should(
       "have.attr",
       "placeholder",
-      "What needs to be done?"
+      "What needs to be done?",
     );
     cy.assertDisplayCountOfTasksLeft("0 items left");
     cy.get(".container__content").should(
       "have.css",
       "background-color",
-      "rgb(234, 231, 230)"
+      "rgb(234, 231, 230)",
     );
   });
 

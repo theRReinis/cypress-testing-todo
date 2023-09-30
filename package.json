@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "prettier:fix": "prettier . --write",
+    "prettier:check": "prettier . --check",
     "cy:run": "cypress run --headless"
   },
   "repository": {
