@@ -33,7 +33,7 @@ describe("Complete tasks into Todo app", () => {
   });
 });
 
-describe.only("Displaying count of tasks left", () => {
+describe("Displaying count of tasks left", () => {
   beforeEach(() => {
     cy.visit("");
     cy.assertDisplayCountOfTasksLeft("0 items left");
