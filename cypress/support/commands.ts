@@ -1,15 +1,22 @@
 /// <reference types="cypress" />
 
+export interface ListItem {
+  id: number;
+  text: string;
+  isCompleted: boolean;
+}
+
 Cypress.Commands.add("addNewTask", addNewTask);
 Cypress.Commands.add("assertTaskListSize", assertTaskListSize);
 Cypress.Commands.add(
   "assertTaskIsMarkedAsCompleted",
-  assertTaskIsMarkedAsCompleted
+  assertTaskIsMarkedAsCompleted,
 );
 Cypress.Commands.add(
   "assertDisplayCountOfTasksLeft",
-  assertDisplayCountOfTasksLeft
+  assertDisplayCountOfTasksLeft,
 );
+Cypress.Commands.add("assertToDoTaskstInList", assertToDoTaskstInList);
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace Cypress {
@@ -35,9 +42,14 @@ declare global {
       assertTaskIsMarkedAsCompleted(): void;
       /**
        * Assert text of displayed count of left tasks
-       * @param expectedText 
+       * @param expectedText
        */
       assertDisplayCountOfTasksLeft(expectedText: string): void;
+      /**
+       * Assert todo tasks in list by providing expected values
+       * @param expecteTaskValues - Expected list item array that is saved in local storage
+       */
+      assertToDoTaskstInList(expecteTaskValues: ListItem[]): void;
     }
   }
 }
@@ -47,7 +59,7 @@ export function addNewTask(taskText: string): void {
 }
 
 export function assertTaskListSize(
-  expextedTaskAmount: number
+  expextedTaskAmount: number,
 ): Cypress.Chainable {
   return cy
     .get('[data-testid="list-item"]')
@@ -62,11 +74,27 @@ export function assertTaskIsMarkedAsCompleted(): void {
       .should(
         "have.css",
         "text-decoration",
-        "line-through solid rgb(225, 219, 218)"
+        "line-through solid rgb(225, 219, 218)",
       );
   });
 }
 
 export function assertDisplayCountOfTasksLeft(expectedText: string): void {
   cy.get("footer span").should("have.text", expectedText);
+}
+
+export function assertToDoTaskstInList(
+  expectedTodos: ListItem[],
+): Cypress.Chainable {
+  return cy.get('[data-testid="list-item"]').then(($todos) => {
+    expectedTodos.forEach((todo, index) => {
+      expect($todos[index]).to.have.text(todo.text);
+      const checkBoxEl = Cypress.$($todos[index]).find("[type=checkbox]");
+      if (todo.isCompleted) {
+        expect(checkBoxEl).to.have.checked;
+      } else {
+        expect(checkBoxEl).not.to.have.checked;
+      }
+    });
+  });
 }
