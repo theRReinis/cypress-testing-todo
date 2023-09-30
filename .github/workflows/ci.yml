@@ -18,7 +18,13 @@ jobs:
         - name: Run Cypress tests
           run: npm run cy:run
 
+        - name: Archive test report artifacts
+          uses: actions/upload-artifact@v3
+          with:
+            name: html-report
+            path: /**/reports/html
+
         - name: Publish test report
           uses: JamesIves/github-pages-deploy-action@v4
           with:
-            folder: /cypress/reports/html
+            folder: html-report
