@@ -10,7 +10,7 @@ Test case overview: - 11 test scenarios
 - Clear completed tasks
 - Filter Todo list app tasks
 
-## Running test locally
+## Running tests locally
 
 1. Clone git repo
 2. Open repo and run command - `nvm use` to use NodeJS version from `.nvmrc` file
