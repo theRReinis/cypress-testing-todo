@@ -17,3 +17,8 @@ jobs:
 
         - name: Run Cypress tests
           run: npm run cy:run
+
+        - name: Publish test report
+          uses: JamesIves/github-pages-deploy-action@v4
+          with:
+            folder: /cypress/reports/html
