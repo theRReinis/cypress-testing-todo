@@ -72,5 +72,5 @@ describe("Clear completed tasks", () => {
 
     cy.get('[data-testid="clear-all"]').click();
     cy.assertTaskListSize(1);
-  })
-})
+  });
+});
