@@ -22,7 +22,7 @@ jobs:
           uses: actions/upload-artifact@v3
           with:
             name: html-report
-            path: /**/reports/html
+            path: cypress/reports/html
 
         - name: Publish test report
           uses: JamesIves/github-pages-deploy-action@v4
