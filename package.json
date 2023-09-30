@@ -6,7 +6,7 @@
   "scripts": {
     "prettier:fix": "prettier . --write",
     "prettier:check": "prettier . --check",
-    "cy:run": "cypress run --headless"
+    "cy:run": "cypress run --headless --browser chrome"
   },
   "repository": {
     "type": "git",
