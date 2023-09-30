@@ -27,4 +27,4 @@ jobs:
         - name: Publish test report
           uses: JamesIves/github-pages-deploy-action@v4
           with:
-            folder: html-report
+            folder: cypress/reports/html
