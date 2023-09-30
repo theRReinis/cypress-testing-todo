@@ -62,3 +62,15 @@ describe("Displaying count of tasks left", () => {
     cy.assertDisplayCountOfTasksLeft("1 item left");
   });
 });
+
+describe("Clear completed tasks", () => {
+  it("User is able to clear completed tasks", () => {
+    cy.visit("");
+    cy.addNewTask("Cook dinner");
+    cy.addNewTask("Read book");
+    cy.assertTaskListSize(2).first().find("label").click();
+
+    cy.get('[data-testid="clear-all"]').click();
+    cy.assertTaskListSize(1);
+  })
+})
