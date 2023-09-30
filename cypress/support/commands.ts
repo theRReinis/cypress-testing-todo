@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
 export interface ListItem {
-  id: number;
+  id?: number;
   text: string;
   isCompleted: boolean;
 }

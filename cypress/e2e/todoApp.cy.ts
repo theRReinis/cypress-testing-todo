@@ -3,6 +3,7 @@ describe("Add new tasks into Todo app", () => {
     cy.visit("");
     cy.addNewTask("Cook dinner");
     cy.assertTaskListSize(1).should("have.text", "Cook dinner");
+    cy.assertToDoTaskstInList([{ text: "Cook dinner", isCompleted: false }]);
   });
 
   it("User added task appears to at the end of the list", () => {
@@ -21,6 +22,7 @@ describe("Complete tasks into Todo app", () => {
 
     cy.reload();
     cy.assertTaskIsMarkedAsCompleted();
+    cy.assertToDoTaskstInList([{ text: "Cook dinner", isCompleted: true }]);
   });
 
   it("User can mark the task as completed by clicking text label", () => {
