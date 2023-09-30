@@ -1,0 +1,27 @@
+{
+  "name": "cypress-testing-todo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/theRReinis/cypress-testing-todo.git"
+  },
+  "keywords": [
+    "Cypress",
+    "Testing"
+  ],
+  "author": "Reinis Romanovs",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/theRReinis/cypress-testing-todo/issues"
+  },
+  "homepage": "https://github.com/theRReinis/cypress-testing-todo#readme",
+  "dependencies": {
+    "cypress": "^13.3.0",
+    "typescript": "^5.2.2"
+  }
+}
