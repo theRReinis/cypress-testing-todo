@@ -6,7 +6,10 @@ Cypress.Commands.add(
   "assertTaskIsMarkedAsCompleted",
   assertTaskIsMarkedAsCompleted
 );
-
+Cypress.Commands.add(
+  "assertDisplayCountOfTasksLeft",
+  assertDisplayCountOfTasksLeft
+);
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace Cypress {
@@ -30,6 +33,11 @@ declare global {
        *    Text label have CSS style: line-through
        */
       assertTaskIsMarkedAsCompleted(): void;
+      /**
+       * Assert text of displayed count of left tasks
+       * @param expectedText 
+       */
+      assertDisplayCountOfTasksLeft(expectedText: string): void;
     }
   }
 }
@@ -57,4 +65,8 @@ export function assertTaskIsMarkedAsCompleted(): void {
         "line-through solid rgb(225, 219, 218)"
       );
   });
+}
+
+export function assertDisplayCountOfTasksLeft(expectedText: string): void {
+  cy.get("footer span").should("have.text", expectedText);
 }

@@ -32,3 +32,33 @@ describe("Complete tasks into Todo app", () => {
     cy.assertTaskIsMarkedAsCompleted();
   });
 });
+
+describe.only("Displaying count of tasks left", () => {
+  beforeEach(() => {
+    cy.visit("");
+    cy.assertDisplayCountOfTasksLeft("0 items left");
+  });
+
+  it("The display count of tasks left updates when new task is added", () => {
+    cy.addNewTask("Cook dinner");
+    cy.assertDisplayCountOfTasksLeft("1 item left");
+    cy.addNewTask("Buy book");
+    cy.assertDisplayCountOfTasksLeft("2 items left");
+  });
+
+  it("The display count of tasks left updates when task is marked as completed", () => {
+    cy.addNewTask("Cook dinner");
+    cy.assertDisplayCountOfTasksLeft("1 item left");
+    cy.assertTaskListSize(1).find("label").click();
+    cy.assertDisplayCountOfTasksLeft("0 items left");
+  });
+
+  it("The display count of tasks left updates when user restores completed task", () => {
+    cy.addNewTask("Cook dinner");
+    cy.assertDisplayCountOfTasksLeft("1 item left");
+    cy.assertTaskListSize(1).find("label").click();
+    cy.assertDisplayCountOfTasksLeft("0 items left");
+    cy.assertTaskListSize(1).find("label").click();
+    cy.assertDisplayCountOfTasksLeft("1 item left");
+  });
+});
