@@ -1,5 +1,5 @@
 describe("Add new tasks into Todo app", () => {
-  it("User see empty task list with available input field", () => {
+  it(`User see empty task list with available input field - ${Cypress.env('password')}`, () => {
     cy.log(Cypress.env('password'))
     cy.log(Cypress.env('password2'))
     cy.visit("");
@@ -17,7 +17,7 @@ describe("Add new tasks into Todo app", () => {
     );
   });
 
-  it("User can add a task to the list by typing into input field and pressing enter", () => {
+  it(`User can add a task to the list by typing into input field and pressing enter - ${Cypress.env('password2')}`, () => {
     cy.visit("");
     cy.addNewTask("Cook dinner");
     cy.assertTaskListSize(1).should("have.text", "Cook dinner");
