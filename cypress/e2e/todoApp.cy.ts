@@ -1,5 +1,7 @@
 describe("Add new tasks into Todo app", () => {
   it("User see empty task list with available input field", () => {
+    console.log(Cypress.env('password'))
+    console.log(Cypress.env('password2'))
     cy.visit("");
     cy.get("header h1").should("have.text", "todos");
     cy.get('[data-testid="main-input"]').should(

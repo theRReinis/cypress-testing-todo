@@ -18,6 +18,9 @@ jobs:
 
       - name: Run Cypress tests
         run: npm run cy:run
+        env:
+          password: ${{secrets.ACTION_PASSWORD}}
+          CYPRESS_password2: ${{secrets.ACTION_PASSWORD}} 
 
       - name: Archive test report artifacts
         uses: actions/upload-artifact@v3

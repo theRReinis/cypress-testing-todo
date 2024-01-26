@@ -10,11 +10,11 @@ Cypress.Commands.add("addNewTask", addNewTask);
 Cypress.Commands.add("assertTaskListSize", assertTaskListSize);
 Cypress.Commands.add(
   "assertTaskIsMarkedAsCompleted",
-  assertTaskIsMarkedAsCompleted,
+  assertTaskIsMarkedAsCompleted
 );
 Cypress.Commands.add(
   "assertDisplayCountOfTasksLeft",
-  assertDisplayCountOfTasksLeft,
+  assertDisplayCountOfTasksLeft
 );
 Cypress.Commands.add("assertToDoTaskstInList", assertToDoTaskstInList);
 declare global {
@@ -54,19 +54,17 @@ declare global {
   }
 }
 
-export function addNewTask(taskText: string): void {
+function addNewTask(taskText: string): void {
   cy.get('[data-testid="main-input"]').type(`${taskText}{enter}`);
 }
 
-export function assertTaskListSize(
-  expextedTaskAmount: number,
-): Cypress.Chainable {
+function assertTaskListSize(expextedTaskAmount: number): Cypress.Chainable {
   return cy
     .get('[data-testid="list-item"]')
     .should("have.length", expextedTaskAmount);
 }
 
-export function assertTaskIsMarkedAsCompleted(): void {
+function assertTaskIsMarkedAsCompleted(): void {
   cy.assertTaskListSize(1).within((el) => {
     cy.wrap(el).find("[type=checkbox]").should("have.attr", "checked");
     cy.wrap(el)
@@ -74,18 +72,16 @@ export function assertTaskIsMarkedAsCompleted(): void {
       .should(
         "have.css",
         "text-decoration",
-        "line-through solid rgb(225, 219, 218)",
+        "line-through solid rgb(225, 219, 218)"
       );
   });
 }
 
-export function assertDisplayCountOfTasksLeft(expectedText: string): void {
+function assertDisplayCountOfTasksLeft(expectedText: string): void {
   cy.get("footer span").should("have.text", expectedText);
 }
 
-export function assertToDoTaskstInList(
-  expectedTodos: ListItem[],
-): Cypress.Chainable {
+function assertToDoTaskstInList(expectedTodos: ListItem[]): Cypress.Chainable {
   return cy.get('[data-testid="list-item"]').then(($todos) => {
     expectedTodos.forEach((todo, index) => {
       expect($todos[index]).to.have.text(todo.text);

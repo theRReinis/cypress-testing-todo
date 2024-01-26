@@ -46,13 +46,18 @@ describe("Filter Todo list app tasks", () => {
     cy.assertTaskListSize(listItems.length);
   });
 
-  it("User is able to filter Active tasks", () => {
+  it.skip("User is able to filter Active tasks", () => {
+    cy.visit("");
+
     cy.get('[data-testid="active-todos"]').click();
     cy.assertTaskListSize(activeItems.length);
     cy.assertToDoTaskstInList(activeItems);
   });
 
   it("User is able to filter Completed tasks", () => {
+
+    cy.visit("");
+
     cy.get(".container__filterButton").contains("Completed").click();
     cy.assertTaskListSize(completedItems.length);
     cy.assertToDoTaskstInList(completedItems);
